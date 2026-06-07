@@ -1,0 +1,31 @@
+{
+  "document_title": "2024 ARCTIC STRATEGY",
+  "source_file": "/home/dschuster/python/policy_docs/DOD-ARCTIC-STRATEGY-2024.pdf",
+  "key_objectives": [
+    "preserve the Arctic as a stable region in which the U.S. homeland remains secure and vital national interests are safeguarded"
+  ],
+  "red_lines": [
+    "security environment shift necessitating DoD response",
+    "insufficient investments in early warning and air defense sensors in the Arctic"
+  ],
+  "decision_heuristics": [
+    "if security threats increase, then deploy Joint Force globally at time and place of choosing",
+    "if there is a need to respond to national security threats, then execute tailored responses alongside interagency and international partners"
+  ],
+  "capability_priorities": {
+    "sensors": 0.85,
+    "intelligence collection": 0.75,
+    "information-sharing capabilities": 0.65
+  },
+  "escalation_ladder": [
+    "monitoring activities of adversaries",
+    "deploying Joint Force globally at chosen time and place",
+    "supporting whole-of-government responses"
+  ],
+  "key_quotes": [
+    "DoD will undertake a calibrated approach that is underpinned by robust intelligence collection capabilities, security cooperation with our regional Allies and partners, and the deterrent value of DoD’s ability to deploy the Joint Force globally at the time and place of our choosing.",
+    "The Arctic serves as an avenue for power projection to Europe and is vital to the defense of Atlantic sea lines of communication between North America and Europe."
+  ],
+  "confidence": 0.95,
+  "original_filename": "DOD-ARCTIC-STRATEGY-2024.pdf"
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "label": "random_policy_mechanics_off",
+    "n_episodes": 20,
+    "blue_win_rate": 0.0,
+    "red_win_rate": 0.0,
+    "mutual_loss_rate": 1.0,
+    "mean_tension": 0.9371824984915239,
+    "mean_final_tension": 0.9992656982732313,
+    "mean_clamps": 0.0,
+    "mean_commitments_blue": 0.0,
+    "mean_commitments_red": 0.0
+  },
+  {
+    "label": "random_policy_mechanics_on",
+    "n_episodes": 20,
+    "blue_win_rate": 0.0,
+    "red_win_rate": 0.0,
+    "mutual_loss_rate": 1.0,
+    "mean_tension": 0.7911026922026131,
+    "mean_final_tension": 0.9951834198698005,
+    "mean_clamps": 3.85,
+    "mean_commitments_blue": 0.0,
+    "mean_commitments_red": 0.0
+  }
+]

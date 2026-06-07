@@ -1,0 +1,84 @@
+[
+  {
+    "document_title": "National Defense Strategy",
+    "source_file": "NATIONAL DEFENSE STRATEGY.pdf",
+    "key_objectives": [
+      "Defend the U.S. Homeland and secure borders, maritime approaches, and skies through Golden Dome for America.",
+      "Deter China in the Indo-Pacific by maintaining a favorable balance of military power without confrontation.",
+      "Increase burden-sharing with U.S. allies and partners to ensure they contribute more to their own defense.",
+      "Supercharge the U.S. Defense Industrial Base to rebuild American industry and ensure production capacity."
+    ],
+    "red_lines": [
+      "Narco-terrorists trafficking lethal narcotics into the country will be brought to justice (Operation ABSOLUTE RESOLVE).",
+      "China's military buildup must not allow it to dominate or threaten U.S. allies in the Indo-Pacific.",
+      "Russia's nuclear arsenal and capabilities targeting the U.S. Homeland are a red line."
+    ],
+    "decision_heuristics": [
+      "If threats to American interests arise, prioritize those that directly impact security, freedom, and prosperity (e.g., homeland defense).",
+      "If allies do not contribute adequately to their own defense, take focused, decisive action to enforce burden-sharing.",
+      "If China's military capabilities grow beyond a certain threshold, reinforce deterrence by denial."
+    ],
+    "capability_priorities": {
+      "Homeland Defense": 0.3,
+      "Indo-Pacific Deterrence": 0.25,
+      "Allied Burden-Sharing": 0.2,
+      "Defense Industrial Base": 0.15,
+      "Nuclear Deterrent": 0.1
+    },
+    "escalation_ladder": [
+      "Increase military-to-military communications with China to support strategic stability.",
+      "Erect a strong denial defense along the First Island Chain (FIC).",
+      "Urge and enable key regional allies and partners to do more for collective defense.",
+      "Launch decisive operations against targets anywhere, including directly from the U.S. Homeland."
+    ],
+    "key_quotes": [
+      "\"American interests are also under threat throughout the Western Hemisphere.\" - Page 8",
+      "\"The NSS directs DoW to maintain a favorable balance of military power in the Indo-Pacific.\" - Page 9",
+      "\"NATO allies have committed to raise defense spending to the new global standard of 5% of GDP in total, with 3.5% of GDP invested in hard military capabilities.\" - Page 10"
+    ],
+    "confidence": 0.85,
+    "original_filename": "2026-NATIONAL-DEFENSE-STRATEGY.pdf",
+    "side": "blue",
+    "doc_length_chars": 51527,
+    "validation_status": "VALID",
+    "validation_note": "Parameters flagged as inferred (acceptable with confidence discount)"
+  },
+  {
+    "document_title": "2024 ARCTIC STRATEGY",
+    "source_file": "2024_ARCTIC_STRATEGY.pdf",
+    "key_objectives": [
+      "preserve the Arctic as a stable region in which the U.S. homeland remains secure and vital national interests are safeguarded.",
+      "enhance domain awareness and communications to better monitor and respond to threats from and through the Arctic.",
+      "deepen engagement with Allies and partners, Federal, State, and local authorities; Alaska Native tribes and communities; and industry."
+    ],
+    "red_lines": [
+      "Russia’s full-scale invasion of Ukraine",
+      "PRC's excessive maritime claims along the Northern Sea Route (NSR)"
+    ],
+    "decision_heuristics": [
+      "if security environment shifts in a way that necessitates response, deploy Joint Force globally at time and place of choosing.",
+      "if climate change impacts infrastructure, prioritize investments to sustain critical terrestrial and space-based infrastructure."
+    ],
+    "capability_priorities": {
+      "sensors_and_intelligence": 0.8,
+      "communications": 0.75,
+      "infrastructure_resilience": 0.65,
+      "cold_weather_equipment": 0.6
+    },
+    "escalation_ladder": [
+      "Enhance intelligence collection and early warning capabilities.",
+      "Engage with Allies and partners to strengthen integrated deterrence.",
+      "Exercise presence in the Arctic through training and joint operations."
+    ],
+    "key_quotes": [
+      "\"The United States is an Arctic nation, and the region is critical to the defense of our homeland, the protection of U.S. national sovereignty, and our defense treaty commitments.\"",
+      "\"This strategy guides DoD’s efforts to build and sustain this monitor-and-respond approach to the Arctic.\""
+    ],
+    "confidence": 0.95,
+    "original_filename": "DOD-ARCTIC-STRATEGY-2024.pdf",
+    "side": "blue",
+    "doc_length_chars": 49624,
+    "validation_status": "VALID",
+    "validation_note": "Parameters validated against source text"
+  }
+]

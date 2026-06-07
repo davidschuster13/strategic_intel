@@ -1,0 +1,38 @@
+{
+  "document_title": "2024 ARCTIC STRATEGY",
+  "source_file": "2024_ARCTIC_STRATEGY.pdf",
+  "key_objectives": [
+    "preserve the Arctic as a stable region in which the U.S. homeland remains secure and vital national interests are safeguarded.",
+    "enhance domain awareness and communications to better monitor and respond to threats from and through the Arctic.",
+    "deepen engagement with Allies and partners, Federal, State, and local authorities; Alaska Native tribes and communities; and industry."
+  ],
+  "red_lines": [
+    "Russia’s full-scale invasion of Ukraine",
+    "PRC's excessive maritime claims along the Northern Sea Route (NSR)"
+  ],
+  "decision_heuristics": [
+    "if security environment shifts in a way that necessitates response, deploy Joint Force globally at time and place of choosing.",
+    "if climate change impacts infrastructure, prioritize investments to sustain critical terrestrial and space-based infrastructure."
+  ],
+  "capability_priorities": {
+    "sensors_and_intelligence": 0.8,
+    "communications": 0.75,
+    "infrastructure_resilience": 0.65,
+    "cold_weather_equipment": 0.6
+  },
+  "escalation_ladder": [
+    "Enhance intelligence collection and early warning capabilities.",
+    "Engage with Allies and partners to strengthen integrated deterrence.",
+    "Exercise presence in the Arctic through training and joint operations."
+  ],
+  "key_quotes": [
+    "\"The United States is an Arctic nation, and the region is critical to the defense of our homeland, the protection of U.S. national sovereignty, and our defense treaty commitments.\"",
+    "\"This strategy guides DoD’s efforts to build and sustain this monitor-and-respond approach to the Arctic.\""
+  ],
+  "confidence": 0.95,
+  "original_filename": "DOD-ARCTIC-STRATEGY-2024.pdf",
+  "side": "blue",
+  "doc_length_chars": 49624,
+  "validation_status": "VALID",
+  "validation_note": "Parameters validated against source text"
+}

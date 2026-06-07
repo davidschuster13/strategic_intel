@@ -1,0 +1,44 @@
+{
+  "document_title": "FOUNDATIONS of the Russian Federation State Policy in the Arctic for the Period up to 2035 (Revised)",
+  "source_file": "RUSSIA MARITIME STUDIES INSTITUTE | UNITED STATES NAVAL WAR COLLEGE",
+  "key_objectives": [
+    "improve quality of life for population including indigenous minorities",
+    "accelerate economic development and increase contribution to national growth",
+    "protect environment, preserve native lands and traditional way of life",
+    "conduct mutually beneficial cooperation based on international law",
+    "safeguard national interests in the Arctic"
+  ],
+  "red_lines": [
+    "attempts by foreign states to revise basic provisions of international treaties governing economic activities in the Arctic",
+    "unsettled international legal delimitation of maritime areas in the Arctic",
+    "actions obstructing legitimate economic or other activities in the Arctic",
+    "military buildup and increase of potential for conflict in the region"
+  ],
+  "decision_heuristics": [
+    "if population decline occurs, then implement measures to improve living conditions and attract residents",
+    "if infrastructure development lags, then prioritize state support for businesses and investment projects"
+  ],
+  "capability_priorities": {
+    "social_infrastructure": 0.8,
+    "economic_development": 0.9,
+    "environmental_protection": 0.75,
+    "military_security": 0.6
+  },
+  "escalation_ladder": [
+    "establish regulatory framework and organizational environment",
+    "create conditions for major economic projects in the Arctic zone",
+    "implement integrated infrastructure along the Northern Sea Route",
+    "expand environmental protection regulations",
+    "promote mutually beneficial cooperation with other Arctic states"
+  ],
+  "key_quotes": [
+    "\"The primary national interests of the Russian Federation in the Arctic are: ensuring sovereignty and territorial integrity, preserving the Arctic as a territory of peace, stability, and mutually beneficial partnership, increasing quality of life for population, developing the Arctic zone as a strategic resource base, developing the Northern Sea Route, protecting environment\"",
+    "“The goals of the State Policy of the Russian Federation in the Arctic are: to improve the quality of life for the population in the Arctic zone, accelerate economic development, protect the environment and traditional way of life, conduct mutually beneficial cooperation based on international law, safeguard national interests”"
+  ],
+  "confidence": 0.95,
+  "original_filename": "Russia_Arctic.pdf",
+  "side": "red",
+  "doc_length_chars": 66251,
+  "validation_status": "VALID",
+  "validation_note": "Parameters flagged as inferred (acceptable with confidence discount)"
+}

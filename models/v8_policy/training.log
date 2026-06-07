@@ -1,0 +1,197 @@
+/home/dschuster/python/sadie_new/lib/python3.12/site-packages/stable_baselines3/common/utils.py:193: UserWarning: get_linear_fn() is deprecated, please use LinearSchedule() instead
+  warnings.warn("get_linear_fn() is deprecated, please use LinearSchedule() instead")
+======================================================================
+SADIE v8 Policy-Aware Self-Play Training
+======================================================================
+Model directory: /home/dschuster/python/sadie_code/models/v8_policy
+Iterations: 16 | Steps/round/side: 50000
+Eval: 10 episodes | Seeds: 2000..2019
+======================================================================
+
+✅ Loaded agents: Blue (2 docs merged), Red (2 docs merged)
+✅ Strategic Wargame v8 - Multi-Domain Enhanced
+   Actions: 24 multi-domain
+   Policy mechanics: on | Blue 2 docs, Red 2 docs
+
+======================================================================
+ITERATION 1/16
+======================================================================
+  Opponents: Blue vs random, Red vs random
+  Training Blue...
+  Training Red...
+  Evaluating...
+  Blue reward: 76.32 | Red: 67.21
+  Tension: 0.00 | Wins B/R/loss: 100% / 0% / 0%
+  Clamps/ep: 0.0 | Commitments B/R: 0.0 / 0.0
+
+======================================================================
+ITERATION 2/16
+======================================================================
+  Opponents: Blue vs Red pool #0, Red vs Blue pool #0
+  Training Blue...
+  Training Red...
+  Evaluating...
+  Blue reward: 76.32 | Red: 67.21
+  Tension: 0.00 | Wins B/R/loss: 100% / 0% / 0%
+  Clamps/ep: 0.0 | Commitments B/R: 0.0 / 0.0
+
+======================================================================
+ITERATION 3/16
+======================================================================
+  Opponents: Blue vs Red pool #0, Red vs Blue pool #0
+  Training Blue...
+  Training Red...
+  Evaluating...
+  Blue reward: 76.32 | Red: 67.33
+  Tension: 0.01 | Wins B/R/loss: 100% / 0% / 0%
+  Clamps/ep: 0.0 | Commitments B/R: 0.0 / 0.0
+
+======================================================================
+ITERATION 4/16
+======================================================================
+  Opponents: Blue vs Red pool #0, Red vs Blue pool #0
+  Training Blue...
+  Training Red...
+  Evaluating...
+  Blue reward: 76.32 | Red: 67.49
+  Tension: 0.03 | Wins B/R/loss: 100% / 0% / 0%
+  Clamps/ep: 0.0 | Commitments B/R: 0.0 / 0.0
+
+======================================================================
+ITERATION 5/16
+======================================================================
+  Opponents: Blue vs Red pool #0, Red vs Blue pool #0
+  Training Blue...
+  Training Red...
+  Evaluating...
+  Blue reward: 76.32 | Red: 67.67
+  Tension: 0.09 | Wins B/R/loss: 100% / 0% / 0%
+  Clamps/ep: 0.0 | Commitments B/R: 0.0 / 0.0
+
+======================================================================
+ITERATION 6/16
+======================================================================
+  Opponents: Blue vs Red pool #0, Red vs Blue pool #0
+  Training Blue...
+  Training Red...
+  Evaluating...
+  Blue reward: 76.32 | Red: 67.81
+  Tension: 0.11 | Wins B/R/loss: 100% / 0% / 0%
+  Clamps/ep: 0.0 | Commitments B/R: 0.0 / 0.0
+
+======================================================================
+ITERATION 7/16
+======================================================================
+  Opponents: Blue vs Red pool #0, Red vs Blue pool #0
+  Training Blue...
+  Training Red...
+  Evaluating...
+  Blue reward: 76.32 | Red: 65.82
+  Tension: 0.25 | Wins B/R/loss: 100% / 0% / 0%
+  Clamps/ep: 19.0 | Commitments B/R: 0.0 / 0.0
+
+======================================================================
+ITERATION 8/16
+======================================================================
+  Opponents: Blue vs Red pool #0, Red vs Blue pool #0
+  Training Blue...
+  Training Red...
+  Evaluating...
+  Blue reward: 87.04 | Red: 80.20
+  Tension: 0.49 | Wins B/R/loss: 100% / 0% / 0%
+  Clamps/ep: 1.0 | Commitments B/R: 0.0 / 0.0
+
+======================================================================
+ITERATION 9/16
+======================================================================
+  Opponents: Blue vs Red pool #0, Red vs Blue pool #0
+  Training Blue...
+  Training Red...
+  Evaluating...
+  Blue reward: 96.70 | Red: 90.22
+  Tension: 0.53 | Wins B/R/loss: 100% / 0% / 0%
+  Clamps/ep: 0.0 | Commitments B/R: 0.0 / 0.0
+
+======================================================================
+ITERATION 10/16
+======================================================================
+  Opponents: Blue vs Red pool #0, Red vs Blue pool #0
+  Training Blue...
+  Training Red...
+  Evaluating...
+  Blue reward: 96.59 | Red: 89.08
+  Tension: 0.56 | Wins B/R/loss: 100% / 0% / 0%
+  Clamps/ep: 19.1 | Commitments B/R: 0.0 / 0.0
+
+======================================================================
+ITERATION 11/16
+======================================================================
+  Opponents: Blue vs Red pool #0, Red vs Blue pool #0
+  Training Blue...
+  Training Red...
+  Evaluating...
+  Blue reward: 94.93 | Red: 89.78
+  Tension: 0.56 | Wins B/R/loss: 100% / 0% / 0%
+  Clamps/ep: 3.3 | Commitments B/R: 0.0 / 0.0
+
+======================================================================
+ITERATION 12/16
+======================================================================
+  Opponents: Blue vs Red pool #0, Red vs Blue pool #0
+  Training Blue...
+  Training Red...
+  Evaluating...
+  Blue reward: 96.74 | Red: 92.72
+  Tension: 0.56 | Wins B/R/loss: 100% / 0% / 0%
+  Clamps/ep: 1.0 | Commitments B/R: 0.0 / 0.0
+
+======================================================================
+ITERATION 13/16
+======================================================================
+  Opponents: Blue vs Red pool #0, Red vs Blue pool #0
+  Training Blue...
+  Training Red...
+  Evaluating...
+  Blue reward: 95.66 | Red: 92.78
+  Tension: 0.60 | Wins B/R/loss: 100% / 0% / 0%
+  Clamps/ep: 1.0 | Commitments B/R: 0.0 / 0.0
+
+======================================================================
+ITERATION 14/16
+======================================================================
+  Opponents: Blue vs Red pool #0, Red vs Blue pool #0
+  Training Blue...
+  Training Red...
+  Evaluating...
+  Blue reward: 95.94 | Red: 93.22
+  Tension: 0.59 | Wins B/R/loss: 100% / 0% / 0%
+  Clamps/ep: 2.0 | Commitments B/R: 0.0 / 0.0
+
+======================================================================
+ITERATION 15/16
+======================================================================
+  Opponents: Blue vs Red pool #0, Red vs Blue pool #0
+  Training Blue...
+  Training Red...
+  Evaluating...
+  Blue reward: 95.75 | Red: 92.25
+  Tension: 0.59 | Wins B/R/loss: 100% / 0% / 0%
+  Clamps/ep: 2.9 | Commitments B/R: 0.0 / 0.0
+
+======================================================================
+ITERATION 16/16
+======================================================================
+  Opponents: Blue vs Red pool #0, Red vs Blue pool #0
+  Training Blue...
+  Training Red...
+  Evaluating...
+  Blue reward: 94.84 | Red: 92.19
+  Tension: 0.62 | Wins B/R/loss: 100% / 0% / 0%
+  Clamps/ep: 1.0 | Commitments B/R: 0.0 / 0.0
+
+======================================================================
+TRAINING COMPLETE
+  Blue: /home/dschuster/python/sadie_code/models/v8_policy/blue_final.zip
+  Red:  /home/dschuster/python/sadie_code/models/v8_policy/red_final.zip
+======================================================================
+

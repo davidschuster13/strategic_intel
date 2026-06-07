@@ -1,0 +1,19 @@
+{
+  "round": [
+    1
+  ],
+  "blue_avg_reward": [
+    1.8895072574966165
+  ],
+  "red_avg_reward": [
+    1.5141199819388143
+  ],
+  "avg_tension": [
+    0.8486652335215646
+  ],
+  "avg_stability": [
+    0.7971928308798752
+  ],
+  "blue_domain_preference": [],
+  "red_domain_preference": []
+}

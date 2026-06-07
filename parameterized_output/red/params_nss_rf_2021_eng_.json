@@ -1,0 +1,44 @@
+{
+  "document_title": "RUSSIAN PRESIDENT'S DECREE About National Security Strategies",
+  "source_file": "Russian Federation Decree No. 400 signed on July 2, 2021 by Vladimir Putin",
+  "key_objectives": [
+    "Strengthening defense capability and internal unity",
+    "Modernizing the economy and developing industrial capacity",
+    "Ensuring sovereignty and independent foreign policy",
+    "Protecting citizens' rights and freedoms",
+    "Improving welfare and protecting dignity of Russian citizens"
+  ],
+  "red_lines": [
+    "Attempts to interfere in Russia's internal affairs",
+    "Use of military force against the territorial integrity of Russia",
+    "Deployment of U.S. medium- and short-range missiles in Europe and Asia-Pacific region"
+  ],
+  "decision_heuristics": [
+    "If external pressure increases, then strengthen defense capabilities and sovereignty",
+    "If socio-economic problems arise, then improve public administration efficiency and fight corruption"
+  ],
+  "capability_priorities": {
+    "human potential development": 0.9,
+    "defense capability": 0.85,
+    "public safety": 0.75,
+    "information security": 0.65,
+    "economic security": 0.6,
+    "scientific and technological development": 0.55
+  },
+  "escalation_ladder": [
+    "Monitoring of external threats and intelligence activities",
+    "Enhancing military deterrence capabilities",
+    "Deployment of defensive measures against potential conflicts",
+    "Military mobilization readiness"
+  ],
+  "key_quotes": [
+    "The Russian Federation's consistent policy of strengthening defence capability, internal unity and political stability, modernizing the economy and developing industrial capacity has strengthened Russia's sovereign statehood as a country capable of pursuing an independent foreign and domestic policy.",
+    "Only a harmonious combination of a strong power and human well-being will ensure the formation of a just society and prosperity of Russia."
+  ],
+  "confidence": 0.95,
+  "original_filename": "nss_rf_2021_eng_.pdf",
+  "side": "red",
+  "doc_length_chars": 81044,
+  "validation_status": "VALID",
+  "validation_note": "Parameters validated against source text"
+}
