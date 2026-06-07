@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+pip-wheel-metadata/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Test / type / lint caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+credentials.json
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+*:Zone.Identifier
+
+# Training artifacts (large binaries — keep JSON stats/reports in repo)
+**/*.zip
+marl_models/
+
+# Logs and runtime output
+*.log
+nohup.out
+legacy/tb_logs_v7/
+**/events.out.tfevents.*
+
+# Optional: uncomment to keep source PDFs local-only (parameterized_output/ has extracts)
+# policy_docs/**/*.pdf
+
+# Cursor local state (not shared project config)
+.cursor/
