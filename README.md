@@ -2,6 +2,96 @@
 
 A multi-domain, policy-parameterized wargame environment for studying strategic competition between US/NATO (Blue) and Adversary (Red) forces with realistic escalation dynamics.
 
+## Blue vs Red simulation
+
+Each episode is a **60-step turn-based contest** between two PPO policies:
+
+| Side | Role | Typical objectives in sim |
+|------|------|---------------------------|
+| **Blue** | US / NATO | Military balance, NATO cohesion, limiting Red resource leverage, economic pressure on Red |
+| **Red** | Adversary | Military pressure, Arctic/resource leverage, economic pressure on Blue |
+
+Both sides choose from **24 multi-domain COAs** (kinetic, cyber, economic, information) each step. Policy PDFs are ingested into JSON parameters that constrain escalation ladders, red lines, and doctrine biases. Outcomes are scored by **strategic score margin**, not RL reward alone — suited for commander / decision-support reporting rather than binary win-rate tuning.
+
+**Recommended checkpoint:** `models/v8_contest/` (contested draws, multi-domain COAs, no eval diversity guard required).
+
+## Usage
+
+### Prerequisites
+
+```bash
+cd /home/dschuster/python
+source ~/python/sadie_new/bin/activate   # or your venv
+```
+
+Run modules as **`python -m sadie_code.<module>`** from the parent of `sadie_code/` (not from inside the package unless `PYTHONPATH` is set). For policy ingestion, start Ollama: `ollama serve`.
+
+### 1. Policy documents → parameters
+
+Place PDFs under `policy_docs/blue/` and `policy_docs/red/`, then ingest:
+
+```bash
+python -m sadie_code.ingest_policy_docs              # both sides
+python -m sadie_code.ingest_policy_docs --side blue
+python -m sadie_code.ingest_policy_docs --side red
+```
+
+Outputs merge into `parameterized_output/blue/` and `parameterized_output/red/` (loaded automatically by the environment).
+
+### 2. Train Blue and Red (self-play PPO)
+
+Default: **20 rounds × 60,000 steps per side** → `models/v8_contest/`:
+
+```bash
+python -m sadie_code.train_self_play_v8
+```
+
+Custom run or smoke test:
+
+```bash
+python -m sadie_code.train_self_play_v8 \
+  --model-dir sadie_code/models/v8_contest \
+  --iterations 4 --steps 20000
+```
+
+Produces `blue_00.zip` … `blue_final.zip`, `red_00.zip` … `red_final.zip`, and `training_stats.json`. Training eval uses **raw policy** (no COA diversity guard).
+
+**Note:** Model `.zip` files are **local only** (see `.gitignore`). Clone the repo for code; retrain or copy checkpoints between machines.
+
+### 3. Evaluate the matchup
+
+```bash
+python -m sadie_code.evaluate --model-dir sadie_code/models/v8_contest --games 50
+```
+
+Saves `eval_report.json` under the same `--model-dir`. Optional eval-only COA nudge for DSS demos:
+
+```bash
+python -m sadie_code.evaluate --model-dir sadie_code/models/v8_contest --games 50 --diversity-guard
+```
+
+### 4. Smoke test / ablation
+
+```bash
+python -m sadie_code.validate_v8
+python -m sadie_code.policy_ablation --model-dir sadie_code/models/v8_contest
+```
+
+### Reading eval output
+
+| Metric | Meaning |
+|--------|---------|
+| **Score margin (Blue − Red)** | Primary outcome; negative = Red ahead |
+| **Win / draw / mutual loss** | From final strategic scores (draw if \|margin\| < 0.12) |
+| **Tension in band (0.45–0.72)** | Share of episodes in “steady competition” |
+| **COA diversity / collapse** | Unique actions; collapse = one action > 80% |
+| **Clamps/ep** | Doctrine ladder overriding chosen COAs |
+| **RL reward** | Training signal only — can disagree with who “won” |
+
+Use **default eval (no guard)** to see what the network learned; use **`--diversity-guard`** only for commander UI “what-if” COA variety.
+
+More detail: [USAGE.md](USAGE.md) · mechanics: [METHODS.md](METHODS.md)
+
 ## Core Files
 
 ### Environment & Training
@@ -29,38 +119,15 @@ A multi-domain, policy-parameterized wargame environment for studying strategic 
 ### Data & Models
 - **`parameterized_output/`** - Extracted policy parameters (JSON)
 - **`policy_docs/`** - Source policy documents (PDFs)
-- **`models/`** - Trained PPO models (Blue/Red pairs)
-- **`models/v8/`** - v8 models (multi-domain policies)
+- **`models/`** - Trained PPO checkpoints (local; `*.zip` gitignored)
+- **`models/v8_contest/`** - Current default training/eval target
+- **`evaluate.py`** / **`eval_utils.py`** - Commander/DSS metrics and rollouts
+- **`policy_mechanics.py`** - Doctrine ladders, red lines, action clamps
 - **`SANITY_CHECK_REPORT.md`** - Comprehensive audit and fixes documentation
 
-## Quick Start
+### Legacy v7 (baseline only)
 
-### 1. Validate v8 Setup (First Time)
-```bash
-python validate_v8.py
-```
-Integration tests verify all v8 systems work together.
-
-### 2. Train Agents (v8 - RECOMMENDED)
-```bash
-python train_self_play_v8.py
-```
-Trains Blue and Red agents using 24 multi-domain actions with realistic escalation dynamics.
-
-### 3. Evaluate Performance
-```bash
-python evaluate.py
-```
-Evaluates trained v8 agents using multi-domain action analysis and enhanced strategic metrics (military balance, coalition strength, resource leverage).
-
-### 4. Parameterize New Policies
-```bash
-python ingest_policy_docs.py
-```
-
-### Legacy v7 (Baseline Comparison)
-See `legacy/LEGACY.md` for instructions on running v7 for baseline comparison.
-```
+See [legacy/LEGACY.md](legacy/LEGACY.md) for archived v7 training and models.
 
 ## Key Features
 
@@ -161,11 +228,11 @@ Edit `strategic_intel_env_v8.py`:
 - Reward weights in `_compute_rewards()`
 
 ### Training Parameters (v8)
-Edit `train_self_play_v8.py`:
-- `iterations`: Number of self-play rounds (default: 16)
-- `steps_per_round`: Timesteps per iteration (default: 60k)
-- PPO hyperparameters: learning_rate, n_steps, batch_size, n_epochs
-- Policy pool sampling strategy
+Edit `train_self_play_v8.py` or use CLI flags:
+- `iterations`: Self-play rounds (default: **20**)
+- `steps_per_round`: Timesteps per side per round (default: **60,000**)
+- `--model-dir`: Output directory (default: `models/v8_contest/`)
+- PPO: `ent_coef=0.05`, linear LR 3e-4 → 5e-5, opponent sampled from prior checkpoint pool
 
 ### Curriculum Learning
 v8 automatically starts episodes in three regimes:
@@ -173,30 +240,18 @@ v8 automatically starts episodes in three regimes:
 - 50% baseline (0.30-0.45) - normal operations
 - 25% high tension (0.52-0.70) - crisis starts
 
-## Expected Behavior
+## Expected Behavior (v8_contest benchmark)
 
-### Learned Strategies
+With the current reward patch, a well-trained pair typically shows:
 
-#### Blue (US/NATO) - Restraint Bias
-- Prefers diplomatic/information actions early
-- Escalates carefully to avoid instability collapse
-- Uses economic sanctions as pressure tool
-- Seeks de-escalation off-ramps when tension > 0.70
-- Maintains alliance cohesion
+- **Contested outcomes** — many episodes classify as **draws** (|Blue − Red strategic score| < 0.12), not 100% one-side wins
+- **Multi-domain COAs** — neither side collapsed to a single action (>80%); Blue often mixes info/economic/cyber; Red spreads across domains
+- **Score margin** near **−0.10** (slight Red edge) with low variance is normal for self-play equilibrium
+- **Tension** mean ~0.73, final ~0.82 (cap); **16–50%** of episodes in the 0.45–0.72 “competition” band depending on run
+- **Coalition drift** — Blue coalition strength often rises over the episode (+0.04 typical)
+- **Doctrine clamps** near **0/ep** when policy and learned COAs align
 
-#### Red (Russia/Adversary) - Assertiveness Bias
-- Exploits stability gaps early
-- Pursues Arctic resource access
-- Uses energy leverage as economic weapon
-- Escalates kinetically when military advantage exists
-- Locks into escalation spiral after major commitments
-
-### Crisis Outcomes
-- **30-40%**: Peaceful outcomes with diplomatic settlements
-- **40-50%**: Managed escalation spirals with de-escalation windows
-- **10-20%**: Breakdown to kinetic action or system collapse
-- **Avg tension**: 0.45-0.65 (realistic for ongoing competition)
-- **Avg stability**: 0.70-0.85 (systems hold but fragile)
+Treat **RL episode reward** as a training diagnostic; brief stakeholders on **margin, trajectories, and COA mix**.
 ## Dependencies
 
 ### Core
@@ -243,23 +298,22 @@ SADIE v8 integrates:
 
 ### Import Errors
 ```bash
-# Ensure you're in the sadie_new virtual environment
-source /home/dschuster/python/sadie_new/bin/activate
-
-# Validate setup
-python validate_v8.py
+cd /home/dschuster/python
+source ~/python/sadie_new/bin/activate
+python -m sadie_code.validate_v8
 ```
 
-### Training Performance
-- If training is slow: Reduce `steps_per_round` in `train_self_play_v8.py`
-- If memory issues: Use `device="cuda"` in PPO setup (requires GPU)
-- For convergence: Increase `iterations` to 20-24
+| Problem | Fix |
+|---------|-----|
+| `ModuleNotFoundError: sadie_code` | Run from parent dir or set `PYTHONPATH` |
+| Observation shape mismatch | Retrain after env changes; old `.zip` incompatible |
+| Eval report in wrong folder | Pass `--model-dir` to `evaluate` |
+| Ollama errors on ingest | Run `ollama serve` locally |
 
-### Results Interpretation
-- Blue reward < 0: Blue is losing strategic position
-- Red tension > 0.8: System near breakdown
-- Stability < 0.3: Crisis is unmanageable
-- Compare against baseline v7 results
+### Training Performance
+- Slow runs: `--iterations 4 --steps 20000` for smoke tests
+- Convergence: full default (20 × 60k) or increase iterations
+- GPU: change `device="cpu"` in `train_self_play_v8.py` if CUDA available
 
 ## Future Enhancements
 
@@ -279,9 +333,9 @@ Built with gymnasium, stable-baselines3, and informed by real policy documents.
 
 ---
 
-**Status**: v8 Ready for Training  
+**Status**: v8 production-ready (`v8_contest` checkpoint)  
 **Last Updated**: May 2026  
-**Recommendation**: Start with `python validate_v8.py` then `python train_self_play_v8.py`
+**Quick path**: `python -m sadie_code.validate_v8` → `python -m sadie_code.train_self_play_v8` → `python -m sadie_code.evaluate --model-dir sadie_code/models/v8_contest --games 50`
 
 ## Code Organization & Cleanup
 
@@ -296,13 +350,16 @@ sadie_code/
 │   ├── escalation_pathways.py
 │   ├── train_self_play_v8.py
 │   ├── validate_v8.py
-│   └── models/v8/
+│   └── models/v8_contest/   # default checkpoints (local .zip)
 │
-├── SHARED UTILITIES         # Works with both v7 and v8
+├── SHARED UTILITIES
 │   ├── load_parameters.py
 │   ├── ingest_policy_docs.py
+│   ├── policy_mechanics.py
+│   ├── eval_utils.py
 │   ├── self_play_env.py
-│   └── evaluate.py
+│   ├── evaluate.py
+│   └── policy_ablation.py
 │
 ├── LEGACY (archived v7)     # For baseline comparison only
 │   ├── LEGACY.md
@@ -312,6 +369,8 @@ sadie_code/
 │
 └── DOCUMENTATION
     ├── README.md
+    ├── USAGE.md
+    ├── METHODS.md
     ├── CLEANUP_GUIDE.md
     └── SANITY_CHECK_REPORT.md
 ```
