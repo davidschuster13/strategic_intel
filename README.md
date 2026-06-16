@@ -70,6 +70,15 @@ Saves `eval_report.json` under the same `--model-dir`. Optional eval-only COA nu
 python -m sadie_code.evaluate --model-dir sadie_code/models/v8_contest --games 50 --diversity-guard
 ```
 
+### GUI (user-friendly runner)
+
+If you want a clickable workflow (upload policy docs → ingest → train → eval), run the Streamlit GUI:
+
+```bash
+pip install streamlit
+streamlit run sadie_code/gui_app.py
+```
+
 ### 4. Smoke test / ablation
 
 ```bash

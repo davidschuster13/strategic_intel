@@ -128,6 +128,7 @@ def evaluate(
     report["commander_metrics"] = cm
     report["blue_action_hist"] = blue_hist.tolist()
     report["red_action_hist"] = red_hist.tolist()
+    report["action_names"] = ACTION_NAMES
     report["blue_model"] = blue_path
     report["red_model"] = red_path
 
