@@ -64,7 +64,9 @@ Produces `blue_00.zip` … `blue_final.zip`, `red_00.zip` … `red_final.zip`, a
 python -m sadie_code.evaluate --model-dir sadie_code/models/v8_contest --games 50
 ```
 
-Saves `eval_report.json` under the same `--model-dir`. Optional eval-only COA nudge for DSS demos:
+Saves `eval_report.json` under the same `--model-dir`. **Publication exports** (CSV/JSON + figures for LaTeX) go to `<model-dir>/publication/` automatically — see [USAGE.md](USAGE.md#4-evaluate-raw-policy-by-default).
+
+Optional eval-only COA nudge for DSS demos:
 
 ```bash
 python -m sadie_code.evaluate --model-dir sadie_code/models/v8_contest --games 50 --diversity-guard

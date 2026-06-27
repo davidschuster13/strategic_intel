@@ -63,6 +63,23 @@ python -m sadie_code.evaluate --model-dir sadie_code/models/v8_contest --games 5
 
 Report saved to `sadie_code/models/v8_contest/eval_report.json` when `--model-dir` is set.
 
+**Publication exports** (LaTeX-ready) are written automatically to `<model-dir>/publication/`:
+
+| File | LaTeX table |
+|------|-------------|
+| `table_main_results.csv` | Key evaluation metrics |
+| `table_coa_mix.csv` | Top Blue/Red actions (count + %) |
+| `table_diversity.csv` | COA diversity metrics |
+| `episodes.csv` | Per-episode raw data |
+| `publication_results.json` | All tables in one JSON |
+| `figures/*.png`, `figures/*.pdf` | Score margin, outcomes, COA mix, tension trajectory, diversity |
+
+```bash
+python -m sadie_code.evaluate --model-dir sadie_code/models/v8_contest --games 50
+python -m sadie_code.evaluate --model-dir sadie_code/models/v8_contest --games 50 --export-dir sadie_code/paper_outputs
+python -m sadie_code.evaluate --model-dir sadie_code/models/v8_contest --games 50 --no-figures
+```
+
 Optional **eval-only** COA diversity shim (not used in training):
 
 ```bash

@@ -11,6 +11,7 @@ from stable_baselines3 import PPO
 
 from .load_parameters import default_models_dir
 from .eval_utils import ACTION_NAMES, evaluate_matchup, rollout_episode
+from .publication_export import export_publication_artifacts
 from .strategic_intel_env_v8 import StrategicWargameEnvV8
 
 
@@ -40,6 +41,8 @@ def evaluate(
     red_model_path: str | None = None,
     model_dir: str | None = None,
     output_json: str | None = None,
+    export_dir: str | None = None,
+    save_figures: bool = True,
     policy_mechanics: bool = True,
     coa_diversity_guard: bool = False,
 ):
@@ -131,6 +134,10 @@ def evaluate(
     report["action_names"] = ACTION_NAMES
     report["blue_model"] = blue_path
     report["red_model"] = red_path
+    report["policy_mechanics"] = policy_mechanics
+    report["coa_diversity_guard"] = coa_diversity_guard
+
+    checkpoint_name = models_dir.name if model_dir else Path(blue_path).parent.name
 
     if output_json:
         out = Path(output_json)
@@ -138,6 +145,26 @@ def evaluate(
         with open(out, "w", encoding="utf-8") as f:
             json.dump(report, f, indent=2)
         print(f"\nSaved report: {out}")
+
+    pub_dir = Path(export_dir) if export_dir else (models_dir / "publication")
+    export_metrics = {**metrics, "blue_model": blue_path, "red_model": red_path,
+                      "policy_mechanics": policy_mechanics, "coa_diversity_guard": coa_diversity_guard}
+    pub_paths = export_publication_artifacts(
+        export_metrics,
+        metrics["episodes"],
+        output_dir=pub_dir,
+        action_names=ACTION_NAMES,
+        checkpoint=checkpoint_name,
+        save_figures=save_figures,
+    )
+    print(f"\nSaved publication exports to: {pub_dir}")
+    for key, path in pub_paths.items():
+        if key.startswith("figure_"):
+            continue
+        print(f"  {key}: {path}")
+    fig_count = sum(1 for k in pub_paths if k.startswith("figure_"))
+    if fig_count:
+        print(f"  figures: {fig_count} files in {pub_dir / 'figures'}")
 
     return report
 
@@ -149,6 +176,17 @@ if __name__ == "__main__":
     parser.add_argument("--blue", type=str, default=None)
     parser.add_argument("--red", type=str, default=None)
     parser.add_argument("--output", type=str, default=None)
+    parser.add_argument(
+        "--export-dir",
+        type=str,
+        default=None,
+        help="Directory for publication JSON/CSV/figures (default: <model-dir>/publication)",
+    )
+    parser.add_argument(
+        "--no-figures",
+        action="store_true",
+        help="Skip matplotlib figure export",
+    )
     parser.add_argument("--no-policy-mechanics", action="store_true")
     parser.add_argument(
         "--diversity-guard",
@@ -169,6 +207,8 @@ if __name__ == "__main__":
         red_model_path=args.red,
         model_dir=args.model_dir,
         output_json=args.output or str(default_out),
+        export_dir=args.export_dir,
+        save_figures=not args.no_figures,
         policy_mechanics=not args.no_policy_mechanics,
         coa_diversity_guard=args.diversity_guard,
     )

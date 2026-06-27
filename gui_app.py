@@ -334,6 +334,38 @@ def main() -> None:
         else:
             st.info(f"No report found at `{report_path}`. Run evaluation first.")
 
+        pub_dir = Path(st.session_state["model_dir"]) / "publication"
+        st.divider()
+        st.subheader("Publication exports (LaTeX tables + figures)")
+        st.caption(
+            "Written automatically on every evaluation to `<model-dir>/publication/`. "
+            "CSV columns map to `tab:main_results`, `tab:coa_mix`, and `tab:diversity`."
+        )
+        pub_files = [
+            ("Main results (CSV)", pub_dir / "table_main_results.csv"),
+            ("COA mix (CSV)", pub_dir / "table_coa_mix.csv"),
+            ("Diversity (CSV)", pub_dir / "table_diversity.csv"),
+            ("Per-episode (CSV)", pub_dir / "episodes.csv"),
+            ("All tables (JSON)", pub_dir / "publication_results.json"),
+        ]
+        for label, fp in pub_files:
+            if fp.exists():
+                st.download_button(
+                    label=f"Download {label}",
+                    data=fp.read_bytes(),
+                    file_name=fp.name,
+                    mime="text/csv" if fp.suffix == ".csv" else "application/json",
+                    key=f"dl_{fp.name}",
+                )
+        fig_dir = pub_dir / "figures"
+        if fig_dir.exists():
+            figs = sorted(fig_dir.glob("*.png"))
+            if figs:
+                st.markdown("**Figures (PNG)**")
+                cols = st.columns(min(2, len(figs)))
+                for i, fig_path in enumerate(figs):
+                    cols[i % len(cols)].image(str(fig_path), caption=fig_path.stem, use_container_width=True)
+
 
 if __name__ == "__main__":
     main()
