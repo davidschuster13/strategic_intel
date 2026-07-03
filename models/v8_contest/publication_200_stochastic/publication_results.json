@@ -1,0 +1,331 @@
+{
+  "meta": {
+    "generated_at": "2026-07-03T14:08:46.285532+00:00",
+    "checkpoint": "v8_contest",
+    "n_episodes": 200,
+    "policy_mechanics": true,
+    "coa_diversity_guard": false,
+    "blue_model": "sadie_code/models/v8_contest/blue_final",
+    "red_model": "sadie_code/models/v8_contest/red_final"
+  },
+  "table_main_results": [
+    {
+      "metric": "Mean Score Margin (Blue - Red)",
+      "value": -0.10902898187941767,
+      "std": 0.008729559146828724,
+      "formatted": "-0.11 \u00b1 0.009",
+      "notes": "Slight Red edge, contested"
+    },
+    {
+      "metric": "Blue Win Rate",
+      "value": 0.0,
+      "std": null,
+      "formatted": "0.0%",
+      "notes": "Strategic score margin > 0.12"
+    },
+    {
+      "metric": "Red Win Rate",
+      "value": 0.115,
+      "std": null,
+      "formatted": "11.5%",
+      "notes": "Strategic score margin < -0.12"
+    },
+    {
+      "metric": "Draw Rate",
+      "value": 0.885,
+      "std": null,
+      "formatted": "88.5%",
+      "notes": "|margin| < 0.12"
+    },
+    {
+      "metric": "Mutual Loss Rate",
+      "value": 0.0,
+      "std": null,
+      "formatted": "0.0%",
+      "notes": "Stability collapse"
+    },
+    {
+      "metric": "Mean Tension (final)",
+      "value": 0.8200000000000002,
+      "std": 2.220446049250313e-16,
+      "formatted": "0.82 \u00b1 0.000",
+      "notes": "Capped at 0.82"
+    },
+    {
+      "metric": "Tension in Realistic Band (0.45-0.72)",
+      "value": 0.04,
+      "std": null,
+      "formatted": "4.0%",
+      "notes": "Sustainable competition"
+    },
+    {
+      "metric": "Mean Final Stability",
+      "value": 0.4516571266232667,
+      "std": 0.003418770546149641,
+      "formatted": "0.45 \u00b1 0.003",
+      "notes": ""
+    },
+    {
+      "metric": "Mean Clamps per Episode",
+      "value": 0.925,
+      "std": 0.9794769012079867,
+      "formatted": "0.9",
+      "notes": "Low doctrine override"
+    }
+  ],
+  "table_coa_mix": [
+    {
+      "action": "kinetic_increased_patrols",
+      "blue_count": 1858,
+      "red_count": 2046,
+      "blue_pct": 15.483333333333333,
+      "red_pct": 17.05,
+      "blue_pct_formatted": "15.5%",
+      "red_pct_formatted": "17.1%"
+    },
+    {
+      "action": "economic_selective_tariffs",
+      "blue_count": 1505,
+      "red_count": 1485,
+      "blue_pct": 12.541666666666666,
+      "red_pct": 12.375,
+      "blue_pct_formatted": "12.5%",
+      "red_pct_formatted": "12.4%"
+    },
+    {
+      "action": "economic_trade_monitoring",
+      "blue_count": 1349,
+      "red_count": 1458,
+      "blue_pct": 11.241666666666667,
+      "red_pct": 12.15,
+      "blue_pct_formatted": "11.2%",
+      "red_pct_formatted": "12.2%"
+    },
+    {
+      "action": "info_intelligence_sharing",
+      "blue_count": 719,
+      "red_count": 1983,
+      "blue_pct": 5.991666666666666,
+      "red_pct": 16.525,
+      "blue_pct_formatted": "6.0%",
+      "red_pct_formatted": "16.5%"
+    },
+    {
+      "action": "cyber_infrastructure_scanning",
+      "blue_count": 1139,
+      "red_count": 1354,
+      "blue_pct": 9.491666666666667,
+      "red_pct": 11.283333333333333,
+      "blue_pct_formatted": "9.5%",
+      "red_pct_formatted": "11.3%"
+    },
+    {
+      "action": "cyber_passive_monitoring",
+      "blue_count": 1072,
+      "red_count": 1222,
+      "blue_pct": 8.933333333333334,
+      "red_pct": 10.183333333333334,
+      "blue_pct_formatted": "8.9%",
+      "red_pct_formatted": "10.2%"
+    },
+    {
+      "action": "cyber_cyber_harassment",
+      "blue_count": 1823,
+      "red_count": 11,
+      "blue_pct": 15.191666666666666,
+      "red_pct": 0.09166666666666666,
+      "blue_pct_formatted": "15.2%",
+      "red_pct_formatted": "0.1%"
+    },
+    {
+      "action": "info_public_statements",
+      "blue_count": 1132,
+      "red_count": 505,
+      "blue_pct": 9.433333333333334,
+      "red_pct": 4.208333333333333,
+      "blue_pct_formatted": "9.4%",
+      "red_pct_formatted": "4.2%"
+    },
+    {
+      "action": "cyber_network_probing",
+      "blue_count": 501,
+      "red_count": 676,
+      "blue_pct": 4.175,
+      "red_pct": 5.633333333333334,
+      "blue_pct_formatted": "4.2%",
+      "red_pct_formatted": "5.6%"
+    },
+    {
+      "action": "kinetic_readiness_exercise",
+      "blue_count": 502,
+      "red_count": 603,
+      "blue_pct": 4.183333333333334,
+      "red_pct": 5.025,
+      "blue_pct_formatted": "4.2%",
+      "red_pct_formatted": "5.0%"
+    },
+    {
+      "action": "kinetic_airspace_restriction",
+      "blue_count": 291,
+      "red_count": 420,
+      "blue_pct": 2.425,
+      "red_pct": 3.5,
+      "blue_pct_formatted": "2.4%",
+      "red_pct_formatted": "3.5%"
+    },
+    {
+      "action": "info_narrative_dominance",
+      "blue_count": 26,
+      "red_count": 96,
+      "blue_pct": 0.21666666666666667,
+      "red_pct": 0.8,
+      "blue_pct_formatted": "0.2%",
+      "red_pct_formatted": "0.8%"
+    },
+    {
+      "action": "info_disinformation_campaign",
+      "blue_count": 30,
+      "red_count": 39,
+      "blue_pct": 0.25,
+      "red_pct": 0.325,
+      "blue_pct_formatted": "0.2%",
+      "red_pct_formatted": "0.3%"
+    },
+    {
+      "action": "cyber_critical_infrastructure_attack",
+      "blue_count": 14,
+      "red_count": 20,
+      "blue_pct": 0.11666666666666667,
+      "red_pct": 0.16666666666666666,
+      "blue_pct_formatted": "0.1%",
+      "red_pct_formatted": "0.2%"
+    },
+    {
+      "action": "economic_sectoral_sanctions",
+      "blue_count": 4,
+      "red_count": 28,
+      "blue_pct": 0.03333333333333333,
+      "red_pct": 0.23333333333333334,
+      "blue_pct_formatted": "0.0%",
+      "red_pct_formatted": "0.2%"
+    },
+    {
+      "action": "economic_financial_isolation",
+      "blue_count": 5,
+      "red_count": 16,
+      "blue_pct": 0.041666666666666664,
+      "red_pct": 0.13333333333333333,
+      "blue_pct_formatted": "0.0%",
+      "red_pct_formatted": "0.1%"
+    },
+    {
+      "action": "economic_targeted_sanctions",
+      "blue_count": 10,
+      "red_count": 5,
+      "blue_pct": 0.08333333333333333,
+      "red_pct": 0.041666666666666664,
+      "blue_pct_formatted": "0.1%",
+      "red_pct_formatted": "0.0%"
+    },
+    {
+      "action": "kinetic_full_mobilization",
+      "blue_count": 7,
+      "red_count": 7,
+      "blue_pct": 0.058333333333333334,
+      "red_pct": 0.058333333333333334,
+      "blue_pct_formatted": "0.1%",
+      "red_pct_formatted": "0.1%"
+    },
+    {
+      "action": "kinetic_air_strike_operations",
+      "blue_count": 5,
+      "red_count": 7,
+      "blue_pct": 0.041666666666666664,
+      "red_pct": 0.058333333333333334,
+      "blue_pct_formatted": "0.0%",
+      "red_pct_formatted": "0.1%"
+    },
+    {
+      "action": "kinetic_limited_deployment",
+      "blue_count": 3,
+      "red_count": 4,
+      "blue_pct": 0.025,
+      "red_pct": 0.03333333333333333,
+      "blue_pct_formatted": "0.0%",
+      "red_pct_formatted": "0.0%"
+    },
+    {
+      "action": "cyber_command_control_disruption",
+      "blue_count": 1,
+      "red_count": 6,
+      "blue_pct": 0.008333333333333333,
+      "red_pct": 0.05,
+      "blue_pct_formatted": "0.0%",
+      "red_pct_formatted": "0.1%"
+    },
+    {
+      "action": "economic_energy_weaponization",
+      "blue_count": 1,
+      "red_count": 4,
+      "blue_pct": 0.008333333333333333,
+      "red_pct": 0.03333333333333333,
+      "blue_pct_formatted": "0.0%",
+      "red_pct_formatted": "0.0%"
+    },
+    {
+      "action": "info_information_warfare",
+      "blue_count": 3,
+      "red_count": 2,
+      "blue_pct": 0.025,
+      "red_pct": 0.016666666666666666,
+      "blue_pct_formatted": "0.0%",
+      "red_pct_formatted": "0.0%"
+    },
+    {
+      "action": "info_existential_messaging",
+      "blue_count": 0,
+      "red_count": 3,
+      "blue_pct": 0.0,
+      "red_pct": 0.025,
+      "blue_pct_formatted": "0.0%",
+      "red_pct_formatted": "0.0%"
+    }
+  ],
+  "table_diversity": [
+    {
+      "metric": "Mean Unique Actions per Episode",
+      "blue_value": 11.105,
+      "blue_std": 0.8625398541516792,
+      "red_value": 10.8,
+      "red_std": 0.9746794344808963,
+      "blue_formatted": "11.1 \u00b1 0.9",
+      "red_formatted": "10.8 \u00b1 1.0"
+    },
+    {
+      "metric": "Collapse Rate (>80% one action)",
+      "blue_value": 0.0,
+      "blue_std": null,
+      "red_value": 0.0,
+      "red_std": null,
+      "blue_formatted": "0.0%",
+      "red_formatted": "0.0%"
+    },
+    {
+      "metric": "Normalized Entropy",
+      "blue_value": 0.6992262830380607,
+      "blue_std": 0.023915616606413437,
+      "red_value": 0.6801795643586669,
+      "red_std": 0.025237043019290552,
+      "blue_formatted": "0.70",
+      "red_formatted": "0.68"
+    }
+  ],
+  "summary": {
+    "mean_score_margin": -0.10902898187941767,
+    "std_score_margin": 0.008729559146828724,
+    "blue_win_rate": 0.0,
+    "red_win_rate": 0.115,
+    "draw_rate": 0.885,
+    "mutual_loss_rate": 0.0
+  }
+}

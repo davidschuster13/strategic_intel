@@ -268,6 +268,7 @@ def _save_figures(
     episodes: List[Dict],
     coa_rows: List[Dict],
     tables: Dict,
+    action_names: Sequence[str] = ACTION_NAMES,
 ) -> List[str]:
     try:
         import matplotlib
@@ -382,6 +383,114 @@ def _save_figures(
         saved.append(str(p))
     plt.close(fig)
 
+    # 6. Strategic score trajectories (mean Blue vs Red)
+    max_len = max(
+        len(e["trajectory"]["blue_strategic_score"]) for e in episodes
+    )
+    blue_mat = np.full((len(episodes), max_len), np.nan)
+    red_mat = np.full((len(episodes), max_len), np.nan)
+    for i, ep in enumerate(episodes):
+        b = ep["trajectory"]["blue_strategic_score"]
+        r = ep["trajectory"]["red_strategic_score"]
+        blue_mat[i, : len(b)] = b
+        red_mat[i, : len(r)] = r
+    steps = np.arange(max_len)
+    fig, ax = plt.subplots(figsize=(7, 4))
+    ax.plot(steps, np.nanmean(blue_mat, axis=0), color="#4C72B0", label="Blue score")
+    ax.plot(steps, np.nanmean(red_mat, axis=0), color="#C44E52", label="Red score")
+    ax.fill_between(
+        steps,
+        np.nanmean(blue_mat, axis=0) - np.nanstd(blue_mat, axis=0),
+        np.nanmean(blue_mat, axis=0) + np.nanstd(blue_mat, axis=0),
+        alpha=0.15,
+        color="#4C72B0",
+    )
+    ax.fill_between(
+        steps,
+        np.nanmean(red_mat, axis=0) - np.nanstd(red_mat, axis=0),
+        np.nanmean(red_mat, axis=0) + np.nanstd(red_mat, axis=0),
+        alpha=0.15,
+        color="#C44E52",
+    )
+    ax.set_xlabel("Step")
+    ax.set_ylabel("Strategic score")
+    ax.set_title("Mean Strategic Score Trajectories")
+    ax.legend()
+    fig.tight_layout()
+    for ext in ("png", "pdf"):
+        p = output_dir / f"fig_strategic_trajectory.{ext}"
+        fig.savefig(p, dpi=200)
+        saved.append(str(p))
+    plt.close(fig)
+
+    # 7. Unique actions per episode (distribution)
+    blue_unique = [e["blue_diversity"]["unique_actions"] for e in episodes]
+    red_unique = [e["red_diversity"]["unique_actions"] for e in episodes]
+    fig, ax = plt.subplots(figsize=(7, 4))
+    bins = np.arange(0.5, max(max(blue_unique), max(red_unique)) + 2, 1)
+    ax.hist(blue_unique, bins=bins, alpha=0.65, label="Blue", color="#4C72B0", edgecolor="white")
+    ax.hist(red_unique, bins=bins, alpha=0.65, label="Red", color="#C44E52", edgecolor="white")
+    ax.set_xlabel("Unique actions per episode")
+    ax.set_ylabel("Episodes")
+    ax.set_title("COA Diversity Distribution")
+    ax.legend()
+    fig.tight_layout()
+    for ext in ("png", "pdf"):
+        p = output_dir / f"fig_unique_actions.{ext}"
+        fig.savefig(p, dpi=200)
+        saved.append(str(p))
+    plt.close(fig)
+
+    # 8. Domain mix (aggregated % by kinetic/cyber/economic/info)
+    def _domain_shares(hist: np.ndarray, names: Sequence[str]) -> Dict[str, float]:
+        totals = {"kinetic": 0, "cyber": 0, "economic": 0, "info": 0}
+        for i, name in enumerate(names):
+            prefix = name.split("_", 1)[0]
+            if prefix in totals:
+                totals[prefix] += int(hist[i])
+        total = sum(totals.values()) or 1
+        return {k: 100.0 * v / total for k, v in totals.items()}
+
+    n_actions = len(episodes[0]["blue_actions"])
+    blue_agg = np.zeros(n_actions, dtype=int)
+    red_agg = np.zeros(n_actions, dtype=int)
+    for ep in episodes:
+        blue_agg += ep["blue_actions"]
+        red_agg += ep["red_actions"]
+    b_share = _domain_shares(blue_agg, action_names)
+    r_share = _domain_shares(red_agg, action_names)
+    domains = list(b_share.keys())
+    x = np.arange(len(domains))
+    width = 0.35
+    fig, ax = plt.subplots(figsize=(7, 4))
+    ax.bar(x - width / 2, [b_share[d] for d in domains], width, label="Blue", color="#4C72B0")
+    ax.bar(x + width / 2, [r_share[d] for d in domains], width, label="Red", color="#C44E52")
+    ax.set_xticks(x)
+    ax.set_xticklabels([d.capitalize() for d in domains])
+    ax.set_ylabel("Share of actions (%)")
+    ax.set_title("Domain Mix (aggregated)")
+    ax.legend()
+    fig.tight_layout()
+    for ext in ("png", "pdf"):
+        p = output_dir / f"fig_domain_mix.{ext}"
+        fig.savefig(p, dpi=200)
+        saved.append(str(p))
+    plt.close(fig)
+
+    # 9. Final stability distribution
+    stabilities = [e["final_stability"] for e in episodes]
+    fig, ax = plt.subplots(figsize=(6, 4))
+    ax.hist(stabilities, bins=min(20, max(8, len(stabilities) // 5)), color="#8172B3", edgecolor="white")
+    ax.set_xlabel("Final stability")
+    ax.set_ylabel("Episodes")
+    ax.set_title("Final Stability Distribution")
+    fig.tight_layout()
+    for ext in ("png", "pdf"):
+        p = output_dir / f"fig_stability.{ext}"
+        fig.savefig(p, dpi=200)
+        saved.append(str(p))
+    plt.close(fig)
+
     return saved
 
 
@@ -443,7 +552,9 @@ def export_publication_artifacts(
     paths["episodes_csv"] = str(ep_csv)
 
     if save_figures:
-        fig_paths = _save_figures(out / "figures", episodes, tables["table_coa_mix"], tables)
+        fig_paths = _save_figures(
+            out / "figures", episodes, tables["table_coa_mix"], tables, action_names
+        )
         for i, fp in enumerate(fig_paths):
             paths[f"figure_{i}"] = fp
 

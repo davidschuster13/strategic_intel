@@ -219,6 +219,7 @@ def evaluate_matchup(
     max_steps: int = 60,
     policy_mechanics: bool = True,
     coa_diversity_guard: bool = False,
+    deterministic: bool = True,
 ) -> Dict:
     env = StrategicWargameEnvV8(
         max_steps=max_steps,
@@ -228,7 +229,7 @@ def evaluate_matchup(
     )
     episodes = []
     for i in range(n_episodes):
-        ep = rollout_episode(env, blue, red, seed=seeds[i % len(seeds)])
+        ep = rollout_episode(env, blue, red, seed=seeds[i % len(seeds)], deterministic=deterministic)
         episodes.append(ep)
 
     outcomes = [e["outcome"] for e in episodes]

@@ -1,0 +1,10 @@
+metric,value,std,formatted,notes
+Mean Score Margin (Blue - Red),-0.10902898187941767,0.008729559146828724,-0.11 ± 0.009,"Slight Red edge, contested"
+Blue Win Rate,0.0,,0.0%,Strategic score margin > 0.12
+Red Win Rate,0.115,,11.5%,Strategic score margin < -0.12
+Draw Rate,0.885,,88.5%,|margin| < 0.12
+Mutual Loss Rate,0.0,,0.0%,Stability collapse
+Mean Tension (final),0.8200000000000002,2.220446049250313e-16,0.82 ± 0.000,Capped at 0.82
+Tension in Realistic Band (0.45-0.72),0.04,,4.0%,Sustainable competition
+Mean Final Stability,0.4516571266232667,0.003418770546149641,0.45 ± 0.003,
+Mean Clamps per Episode,0.925,0.9794769012079867,0.9,Low doctrine override

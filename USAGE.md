@@ -76,9 +76,12 @@ Report saved to `sadie_code/models/v8_contest/eval_report.json` when `--model-di
 
 ```bash
 python -m sadie_code.evaluate --model-dir sadie_code/models/v8_contest --games 50
+python -m sadie_code.evaluate --model-dir sadie_code/models/v8_contest --games 200 --stochastic
 python -m sadie_code.evaluate --model-dir sadie_code/models/v8_contest --games 50 --export-dir sadie_code/paper_outputs
 python -m sadie_code.evaluate --model-dir sadie_code/models/v8_contest --games 50 --no-figures
 ```
+
+Use **`--stochastic`** for publication runs when you want wider COA/outcome spread (sampled actions). Default is deterministic (reproducible). Each episode uses a unique seed when `--games` > 20.
 
 Optional **eval-only** COA diversity shim (not used in training):
 

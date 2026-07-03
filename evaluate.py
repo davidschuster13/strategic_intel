@@ -4,7 +4,16 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
+
+# Support direct execution: python sadie_code/evaluate.py
+# (Recommended: python -m sadie_code.evaluate from repo parent)
+if __name__ == "__main__" and (__package__ is None or __package__ == ""):
+    _repo_root = Path(__file__).resolve().parent.parent
+    if str(_repo_root) not in sys.path:
+        sys.path.insert(0, str(_repo_root))
+    __package__ = "sadie_code"
 
 import numpy as np
 from stable_baselines3 import PPO
@@ -45,6 +54,7 @@ def evaluate(
     save_figures: bool = True,
     policy_mechanics: bool = True,
     coa_diversity_guard: bool = False,
+    deterministic: bool = True,
 ):
     models_dir = Path(model_dir or default_models_dir())
     try:
@@ -63,11 +73,15 @@ def evaluate(
         blue,
         red,
         n_episodes=n_games,
+        seeds=tuple(range(2000, 2000 + n_games)),
         policy_mechanics=policy_mechanics,
         coa_diversity_guard=coa_diversity_guard,
+        deterministic=deterministic,
     )
     if coa_diversity_guard:
         print("(COA diversity guard ON — breaks 2+ identical Blue / 3+ Red COAs for DSS realism)")
+    if not deterministic:
+        print("(Stochastic policy sampling ON — wider COA/outcome diversity for publication)")
 
     blue_hist = np.zeros(len(ACTION_NAMES), dtype=int)
     red_hist = np.zeros(len(ACTION_NAMES), dtype=int)
@@ -136,6 +150,7 @@ def evaluate(
     report["red_model"] = red_path
     report["policy_mechanics"] = policy_mechanics
     report["coa_diversity_guard"] = coa_diversity_guard
+    report["deterministic"] = deterministic
 
     checkpoint_name = models_dir.name if model_dir else Path(blue_path).parent.name
 
@@ -193,6 +208,11 @@ if __name__ == "__main__":
         action="store_true",
         help="Enable eval-only COA diversity shim (not used during training).",
     )
+    parser.add_argument(
+        "--stochastic",
+        action="store_true",
+        help="Sample actions stochastically (more diverse COA/outcome spread for publication).",
+    )
     args = parser.parse_args()
     if args.model_dir:
         report_dir = Path(args.model_dir)
@@ -211,4 +231,5 @@ if __name__ == "__main__":
         save_figures=not args.no_figures,
         policy_mechanics=not args.no_policy_mechanics,
         coa_diversity_guard=args.diversity_guard,
+        deterministic=not args.stochastic,
     )

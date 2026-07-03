@@ -1,0 +1,196 @@
+{
+  "meta": {
+    "generated_at": "2026-07-01T23:51:07.173832+00:00",
+    "checkpoint": "v8_contest",
+    "n_episodes": 200,
+    "policy_mechanics": true,
+    "coa_diversity_guard": false,
+    "blue_model": "sadie_code/models/v8_contest/blue_final",
+    "red_model": "sadie_code/models/v8_contest/red_final"
+  },
+  "table_main_results": [
+    {
+      "metric": "Mean Score Margin (Blue - Red)",
+      "value": -0.09701018500459696,
+      "std": 0.0034087655007124444,
+      "formatted": "-0.10 \u00b1 0.003",
+      "notes": "Slight Red edge, contested"
+    },
+    {
+      "metric": "Blue Win Rate",
+      "value": 0.0,
+      "std": null,
+      "formatted": "0.0%",
+      "notes": "Strategic score margin > 0.12"
+    },
+    {
+      "metric": "Red Win Rate",
+      "value": 0.0,
+      "std": null,
+      "formatted": "0.0%",
+      "notes": "Strategic score margin < -0.12"
+    },
+    {
+      "metric": "Draw Rate",
+      "value": 1.0,
+      "std": null,
+      "formatted": "100.0%",
+      "notes": "|margin| < 0.12"
+    },
+    {
+      "metric": "Mutual Loss Rate",
+      "value": 0.0,
+      "std": null,
+      "formatted": "0.0%",
+      "notes": "Stability collapse"
+    },
+    {
+      "metric": "Mean Tension (final)",
+      "value": 0.8200000000000002,
+      "std": 2.220446049250313e-16,
+      "formatted": "0.82 \u00b1 0.000",
+      "notes": "Capped at 0.82"
+    },
+    {
+      "metric": "Tension in Realistic Band (0.45-0.72)",
+      "value": 0.005,
+      "std": null,
+      "formatted": "0.5%",
+      "notes": "Sustainable competition"
+    },
+    {
+      "metric": "Mean Final Stability",
+      "value": 0.4509471635620297,
+      "std": 0.002460158924437741,
+      "formatted": "0.45 \u00b1 0.002",
+      "notes": ""
+    },
+    {
+      "metric": "Mean Clamps per Episode",
+      "value": 0.0,
+      "std": 0.0,
+      "formatted": "0.0",
+      "notes": "Low doctrine override"
+    }
+  ],
+  "table_coa_mix": [
+    {
+      "action": "kinetic_increased_patrols",
+      "blue_count": 1215,
+      "red_count": 6007,
+      "blue_pct": 10.125,
+      "red_pct": 50.05833333333333,
+      "blue_pct_formatted": "10.1%",
+      "red_pct_formatted": "50.1%"
+    },
+    {
+      "action": "cyber_cyber_harassment",
+      "blue_count": 4179,
+      "red_count": 0,
+      "blue_pct": 34.825,
+      "red_pct": 0.0,
+      "blue_pct_formatted": "34.8%",
+      "red_pct_formatted": "0.0%"
+    },
+    {
+      "action": "info_intelligence_sharing",
+      "blue_count": 128,
+      "red_count": 3597,
+      "blue_pct": 1.0666666666666667,
+      "red_pct": 29.975,
+      "blue_pct_formatted": "1.1%",
+      "red_pct_formatted": "30.0%"
+    },
+    {
+      "action": "info_public_statements",
+      "blue_count": 3106,
+      "red_count": 231,
+      "blue_pct": 25.883333333333333,
+      "red_pct": 1.925,
+      "blue_pct_formatted": "25.9%",
+      "red_pct_formatted": "1.9%"
+    },
+    {
+      "action": "cyber_passive_monitoring",
+      "blue_count": 1257,
+      "red_count": 1526,
+      "blue_pct": 10.475,
+      "red_pct": 12.716666666666667,
+      "blue_pct_formatted": "10.5%",
+      "red_pct_formatted": "12.7%"
+    },
+    {
+      "action": "economic_trade_monitoring",
+      "blue_count": 1829,
+      "red_count": 319,
+      "blue_pct": 15.241666666666667,
+      "red_pct": 2.658333333333333,
+      "blue_pct_formatted": "15.2%",
+      "red_pct_formatted": "2.7%"
+    },
+    {
+      "action": "kinetic_airspace_restriction",
+      "blue_count": 137,
+      "red_count": 319,
+      "blue_pct": 1.1416666666666666,
+      "red_pct": 2.658333333333333,
+      "blue_pct_formatted": "1.1%",
+      "red_pct_formatted": "2.7%"
+    },
+    {
+      "action": "kinetic_readiness_exercise",
+      "blue_count": 149,
+      "red_count": 0,
+      "blue_pct": 1.2416666666666667,
+      "red_pct": 0.0,
+      "blue_pct_formatted": "1.2%",
+      "red_pct_formatted": "0.0%"
+    },
+    {
+      "action": "economic_selective_tariffs",
+      "blue_count": 0,
+      "red_count": 1,
+      "blue_pct": 0.0,
+      "red_pct": 0.008333333333333333,
+      "blue_pct_formatted": "0.0%",
+      "red_pct_formatted": "0.0%"
+    }
+  ],
+  "table_diversity": [
+    {
+      "metric": "Mean Unique Actions per Episode",
+      "blue_value": 6.285,
+      "blue_std": 0.7441606009457904,
+      "red_value": 5.36,
+      "red_std": 0.6858571279792898,
+      "blue_formatted": "6.3 \u00b1 0.7",
+      "red_formatted": "5.4 \u00b1 0.7"
+    },
+    {
+      "metric": "Collapse Rate (>80% one action)",
+      "blue_value": 0.0,
+      "blue_std": null,
+      "red_value": 0.0,
+      "red_std": null,
+      "blue_formatted": "0.0%",
+      "red_formatted": "0.0%"
+    },
+    {
+      "metric": "Normalized Entropy",
+      "blue_value": 0.4965452107567023,
+      "blue_std": 0.019799529849366594,
+      "red_value": 0.3783896607082379,
+      "red_std": 0.02930033645307719,
+      "blue_formatted": "0.50",
+      "red_formatted": "0.38"
+    }
+  ],
+  "summary": {
+    "mean_score_margin": -0.09701018500459696,
+    "std_score_margin": 0.0034087655007124444,
+    "blue_win_rate": 0.0,
+    "red_win_rate": 0.0,
+    "draw_rate": 1.0,
+    "mutual_loss_rate": 0.0
+  }
+}

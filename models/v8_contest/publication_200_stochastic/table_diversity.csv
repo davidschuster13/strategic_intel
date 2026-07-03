@@ -1,0 +1,4 @@
+metric,blue_value,blue_std,red_value,red_std,blue_formatted,red_formatted
+Mean Unique Actions per Episode,11.105,0.8625398541516792,10.8,0.9746794344808963,11.1 ± 0.9,10.8 ± 1.0
+Collapse Rate (>80% one action),0.0,,0.0,,0.0%,0.0%
+Normalized Entropy,0.6992262830380607,0.023915616606413437,0.6801795643586669,0.025237043019290552,0.70,0.68
